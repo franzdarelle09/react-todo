@@ -17,20 +17,20 @@ useEffect(() => {
 }, [])
 
 const fetchTasks = async () => {
-  const res = await fetch('http://localhost:5000/tasks')
+  const res = await fetch('https://my-json-server.typicode.com/franzdarelle09/todojson/tasks')
   const data = await res.json()
   return data
 }
 
 const fetchTask = async (id) => {
-  const res = await fetch(`http://localhost:5000/tasks/${id}`)
+  const res = await fetch(`https://my-json-server.typicode.com/franzdarelle09/todojson/tasks/${id}`)
   const data = await res.json()
   return data
 }
 
 const [showAddTask,setShowAddTask] = useState(false)
 const deleteTask = async (id) => {
-  await fetch(`http://localhost:5000/tasks/${id}`,{
+  await fetch(`https://my-json-server.typicode.com/franzdarelle09/todojson/tasks/${id}`,{
     method: 'DELETE'
   })
   setTasks(tasks.filter((task) => task.id !== id))
@@ -39,7 +39,7 @@ const deleteTask = async (id) => {
 const toggleReminder = async (id) => {
   const taskToToggle = await fetchTask(id)
   const updTask = {...taskToToggle, reminder: !taskToToggle.reminder}
-  const res = await fetch(`http://localhost:5000/tasks/${id}`,{
+  const res = await fetch(`https://my-json-server.typicode.com/franzdarelle09/todojson/tasks/${id}`,{
     method: 'PUT',
     headers:{
       'Content-type':'application/json'
@@ -52,7 +52,7 @@ const toggleReminder = async (id) => {
 }
 
 const addTask = async (task) => {
-  const res = await fetch('http://localhost:5000/tasks',{
+  const res = await fetch('https://my-json-server.typicode.com/franzdarelle09/todojson/tasks',{
     method: 'POST',
     headers:{
       'Content-type':'application/json'
